@@ -15,4 +15,9 @@ android {
   lintOptions {
     abortOnError false
   }
+  externalNativeBuild {
+    cmake {
+        path file('src/main/cpp/CMakeLists.txt')
+    }
+  }
 }
