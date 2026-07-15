@@ -1,0 +1,6 @@
+{
+  "platforms": ["android"],
+  "android": {
+    "modules": ["expo.modules.gs1syntaxengine.ExpoGs1SyntaxEngineModule"]
+  }
+}
