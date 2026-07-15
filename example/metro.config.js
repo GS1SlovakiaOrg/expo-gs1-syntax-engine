@@ -20,7 +20,8 @@ config.resolver.nodeModulesPaths = [
 ];
 
 config.resolver.extraNodeModules = {
-  'expo-gs1-syntax-engine': '..',
+  // 'expo-gs1-syntax-engine': '..',
+  'expo-gs1-syntax-engine': path.resolve(__dirname, '..'),
 };
 
 config.watchFolders = [path.resolve(__dirname, '..')];
