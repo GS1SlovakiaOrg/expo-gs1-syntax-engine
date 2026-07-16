@@ -19,7 +19,10 @@
     "expo-gs1-syntax-engine",
     "ExpoGs1SyntaxEngine"
   ],
-  "repository": "https://github.com/GS1SlovakiaOrg/expo-gs1-syntax-engine",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GS1SlovakiaOrg/expo-gs1-syntax-engine.git"
+  },
   "bugs": {
     "url": "https://github.com/GS1SlovakiaOrg/expo-gs1-syntax-engine/issues"
   },
@@ -51,5 +54,13 @@
     "expo": "*",
     "react": "*",
     "react-native": "*"
-  }
+  },
+  "files": [
+    "android",
+    "src",
+    "expo-module.config.json",
+    "*.podspec",
+    "README.md",
+    "LICENSE"
+  ]
 }
