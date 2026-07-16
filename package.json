@@ -58,12 +58,11 @@
   "files": [
     "build",
     "src",
-    "android/src",
-    "android/build.gradle",
-    "android/gradle.properties",
-    "android/src/main",
-    "*.podspec",
+    "android",
+    "ios",
     "plugin",
+    "*.podspec",
+    "expo-module.config.json",
     "README.md"
   ]
 }
