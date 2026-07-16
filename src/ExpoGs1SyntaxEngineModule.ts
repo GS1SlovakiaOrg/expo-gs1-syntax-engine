@@ -1,8 +1,4 @@
-import { requireNativeModule } from 'expo';
-
-// declare class ExpoGs1SyntaxEngineModule extends NativeModule<{}> {}
-
-// export default requireNativeModule<ExpoGs1SyntaxEngineModule>('ExpoGs1SyntaxEngine');
+import {requireNativeModule } from 'expo';
 
 const NativeModule = requireNativeModule('ExpoGs1SyntaxEngine');
 

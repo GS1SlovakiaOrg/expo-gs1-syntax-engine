@@ -20,7 +20,7 @@ export type ProcessBarcodeResult = {
 
 /**
  * Recognised GS1 barcode formats ("symbologies") for processing scan data.
- * <p>
+ * 
  * This enum defines all supported GS1 barcode symbology types that can be used
  * with the encoder. Each symbology has specific characteristics and use cases.
  */
@@ -46,11 +46,11 @@ export enum Symbology {
 
 /**
  * Optional AI validation procedures that may be applied to detect invalid inputs.
- * <p>
+ * 
  * These validation procedures are applied when AI data is provided using
  * {setAIdataStr(String)}, {setDataStr(String)} or {setScanData(String)}.
- * <p>
- * <strong>Note:</strong> Some validation procedures are "locked" (always enabled and cannot be modified).
+ * 
+ * Note: Some validation procedures are "locked" (always enabled and cannot be modified).
  * All validation procedures are listed to maintain correct enum value alignment with the native library.
  */
 export enum Validation {
