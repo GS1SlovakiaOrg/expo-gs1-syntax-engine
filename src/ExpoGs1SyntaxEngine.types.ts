@@ -8,14 +8,15 @@ export type ProcessBarcodeResult = {
   success: boolean;
   error?: string | null;
   errorMarkup?: string | null;
-  // symbology?: Symbology | null;
   dataStr?: string | null;
-  // scanData?: string | null;
   aiDataStr?: string | null;
   hri?: string[] | null;
   dlUri?: string | null;
   aiDataPairs?: stringKeyValPair;
   aiOrder?: string[];
+  symbology?: Symbology | null | undefined;
+  symbologyName?: string | null | undefined;
+  scanData?: string | null | undefined;
 };
 
 /**

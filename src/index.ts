@@ -113,7 +113,7 @@ export class GS1Engine {
 
   /**
    * Set the symbology type.
-   * @param {Symbology} value
+   * @param {Symbology} symbology
    */
   set sym(symbology: Symbology) {
     this.ensureInitialized();
@@ -498,6 +498,16 @@ export class GS1Engine {
   }
 
   /**
+   * General method to process barcode data strings in multiple formats.
+   * Can handle Bracketed AI element strings, Unbracketed AI element strings, GS1 Digital Link URIs and Scan data.
+   * 
+   * Returns all GS1 Syntax Engine data and adds additional data:
+   *  - aiDataPairs - GS1 AI Data Pairs object with "GS1 AI" : "Value" pairs
+   *  - aiOrder - GS1 AIs ordered array
+   *  - symbologyName - Symbology name from Symbology enum
+   * 
+   * Return object may include 3 properties with null as a value (symbology, symbologyName, scanData). 
+   * That is when provided string is not set as scanData with setScanData. Without scanData format the symbology can not be determined.
    * 
    * @param scannedData Scanned string that should be processed
    * @param dlStem a URI "stem" used as a prefix for the URI. If null, the GS1 canonical stem (https://id.gs1.org/) will be used
@@ -506,10 +516,12 @@ export class GS1Engine {
   processBarcode(scannedData: string, dlStem: string | null = null): ProcessBarcodeResult {
     try {
       this.ensureInitialized();
+      let isScannedData = false;
 
       if (scannedData.startsWith('(')) {
         this.nativeInstance.setAIdataStr(scannedData);
       } else if (scannedData.startsWith(']')) {
+        isScannedData = true;
         this.nativeInstance.setScanData(scannedData.replace(/{GS}/g, '\u001d'));
       } else if (scannedData.startsWith('^')) {
         this.nativeInstance.setDataStr(scannedData);
@@ -547,7 +559,7 @@ export class GS1Engine {
         this.nativeInstance.setDataStr('^' + scannedData);
       }
 
-      return this.formatEngineResultData(dlStem);
+      return this.getEngineResultData(dlStem, isScannedData);
     } catch (e: any) {
       return {
         success: false,
@@ -557,11 +569,21 @@ export class GS1Engine {
   }
 
   /**
+   * Get formated GS1 Syntax Engine data
+   * 
+   * Gets all GS1 Syntax Engine data and adds additional data:
+   *  - aiDataPairs - GS1 AI Data Pairs object with "GS1 AI" : "Value" pairs
+   *  - aiOrder - GS1 AIs ordered array
+   *  - symbologyName - Symbology name from Symbology enum
+   * 
+   * Return object may include 3 properties with null as a value (symbology, symbologyName, scanData). 
+   * That is when provided string is not set as scanData with setScanData. Without scanData format the symbology can not be determined.
    * 
    * @param dlStem a URI "stem" used as a prefix for the URI. If null, the GS1 canonical stem (https://id.gs1.org/) will be used
+   * @param isScannedData is provided string a scanData string?
    * @returns {ProcessBarcodeResult}
    */
-  formatEngineResultData(dlStem: string | null = null): ProcessBarcodeResult {
+  getEngineResultData(dlStem: string | null = null, isScannedData: boolean = false): ProcessBarcodeResult {
     try {
       const stem = dlStem ?? 'https://id.gs1.org';
       const errMarkup = this.nativeInstance.getErrMarkup();
@@ -579,21 +601,19 @@ export class GS1Engine {
         customDataFormats.aiOrder[index] = `${aiValue}`;
       }
 
-      // getSym and getScanData are disabled
-      // when used, they enforce Symbology determinition which limits automatic decodability
-
       return {
         success: !hasError,
         error: hasError ? errMarkup : null,
         errorMarkup: errMarkup,
-        // symbology: this.nativeInstance.getSym(),
         dataStr: this.nativeInstance.getDataStr(),
-        // scanData: this.nativeInstance.getScanData(),
         aiDataStr: this.nativeInstance.getAIdataStr(),
         hri: customDataFormats.hri,
         dlUri: this.nativeInstance.getDLuri(stem),
         aiDataPairs: customDataFormats.aiDataPairs,
         aiOrder: customDataFormats.aiOrder,
+        symbology: (isScannedData === true) ? this.sym : null,
+        symbologyName: (isScannedData === true) ? Symbology[this.sym] : null,
+        scanData: (isScannedData === true) ? this.nativeInstance.getScanData() : null,
       };
     } catch (e: any) {
       return {
@@ -604,7 +624,7 @@ export class GS1Engine {
   }
 
   /**
-   * Method to calculate GS1 check digit
+   * Calculate GS1 check digit
    * @param gs1String GS1 string without check digit
    * @returns {number} Calculated check digit
    */
