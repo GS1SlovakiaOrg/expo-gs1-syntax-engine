@@ -56,13 +56,11 @@
     "react-native": "*"
   },
   "files": [
+    "android",
     "src",
-    "android/src",
-    "android/build.gradle",
-    "android/gradle.properties",
-    "android/src/main",
+    "expo-module.config.json",
     "*.podspec",
-    "plugin",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ]
 }
