@@ -26,9 +26,6 @@
     "type": "git",
     "url": "git+https://github.com/GS1SlovakiaOrg/expo-gs1-syntax-engine.git"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "bugs": {
     "url": "https://github.com/GS1SlovakiaOrg/expo-gs1-syntax-engine/issues"
   },
