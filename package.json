@@ -17,11 +17,17 @@
     "react-native",
     "expo",
     "expo-gs1-syntax-engine",
-    "ExpoGs1SyntaxEngine"
+    "ExpoGs1SyntaxEngine",
+    "GS1 Slovakia",
+    "GS1",
+    "GS1 standards"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/GS1SlovakiaOrg/expo-gs1-syntax-engine.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "bugs": {
     "url": "https://github.com/GS1SlovakiaOrg/expo-gs1-syntax-engine/issues"
@@ -54,15 +60,5 @@
     "expo": "*",
     "react": "*",
     "react-native": "*"
-  },
-  "files": [
-    "build",
-    "src",
-    "android",
-    "ios",
-    "plugin",
-    "*.podspec",
-    "expo-module.config.json",
-    "README.md"
-  ]
+  }
 }
