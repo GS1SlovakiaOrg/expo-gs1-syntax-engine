@@ -17,10 +17,9 @@ __tests__
 example
 node_modules
 
-android/.cxx
-android/.gradle
-android/build
-android/app/build
+/android/.cxx
+/android/build
+/android/app/build
 
 ios/Pods
 ios/build
