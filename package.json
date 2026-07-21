@@ -62,5 +62,11 @@
     "expo": "*",
     "react": "*",
     "react-native": "*"
+  },
+  "exports": {
+    ".": {
+      "types": "./build/index.d.ts",
+      "default": "./build/index.js"
+    }
   }
 }
