@@ -49,6 +49,9 @@
     "react-native": "0.86.0",
     "typescript": "~6.0.3"
   },
+  "overrides": {
+    "ip": "^2.0.1"
+  },
   "jest": {
     "preset": "jest-expo",
     "roots": [
