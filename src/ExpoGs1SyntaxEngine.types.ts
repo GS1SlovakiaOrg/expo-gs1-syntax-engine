@@ -1,9 +1,16 @@
 export type BarcodeInputType = 'scanData' | 'dataStr';
 
+/**
+ * General "string":string type
+ */
 export type stringKeyValPair = {
   [key: string]: string;
 };
 
+/**
+ * Data structure returned by processBarcode method 
+ * (general method to process barcode data strings in multiple formats)
+ */
 export type ProcessBarcodeResult = {
   success: boolean;
   error?: string | null;

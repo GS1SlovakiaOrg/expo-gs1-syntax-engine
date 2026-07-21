@@ -321,6 +321,43 @@ export class GS1Engine {
   }
 
   /**
+   * Get the raw data that would be directly encoded within a GS1 barcode message.
+   * 
+   * A "^" character at the start of the input indicates that the data is in GS1
+   * Application Identifier syntax. In this case, all subsequent instances of the
+   * "^" character represent the FNC1 non-data characters that are used to
+   * separate fields that are not specified as being pre-defined length from
+   * subsequent fields.
+   * 
+   * Inputs beginning with "^" will be validated against certain data syntax
+   * rules for GS1 AIs. If the input is invalid then the setter will throw
+   * a {@link GS1encoderParameterException}. In the case that the data is
+   * unacceptable due to invalid AI content then a marked up version of the
+   * offending AI can be retrieved using {@link GS1encoder#errMarkup}.
+   * 
+   * Note: It is strongly advised that GS1 data input is instead specified using
+   * {@link GS1encoder#aiDataStr} which takes care of the AI encoding rules
+   * automatically, including insertion of FNC1 characters where required. This
+   * can be used for all symbologies that accept GS1 AI syntax data.
+   * 
+   * Inputs beginning with "http://" or "https://" will be parsed as a GS1
+   * Digital Link URI during which the corresponding AI element string is
+   * extracted and validated.
+   * 
+   * EAN/UPC, GS1 DataBar and GS1-128 support a Composite Component. The
+   * Composite Component must be specified in AI syntax. It must be separated
+   * from the primary linear components with a "|" character and begin with an
+   * FNC1 in first position, for example:
+   * 
+   * encoder.dataStr = "^0112345678901231|^10ABC123^11210630";
+   * 
+   * 
+   * The above specifies a linear component representing "(01)12345678901231"
+   * together with a composite component representing "(10)ABC123(11)210630".
+   * 
+   * Note: For GS1 data it is simpler and less error prone to specify the input
+   * in human-friendly GS1 AI syntax using {@link GS1encoder#aiDataStr}.
+   *
    * Set the raw data that would be directly encoded within a GS1 barcode message.
    * @param {string} value
    */
@@ -365,6 +402,32 @@ export class GS1Engine {
   }
 
   /**
+   * Get the barcode data input buffer using GS1 Application Identifier syntax.
+   * 
+   * The input is provided in human-friendly format without FNC1 characters
+   * which are inserted automatically, for example:
+   * 
+   * (01)12345678901231(10)ABC123(11)210630
+   * 
+   * This syntax harmonises the format for the input accepted by all symbologies.
+   * For example, the following input is acceptable for EAN-13, UPC-A, UPC-E, any
+   * variant of the GS1 DataBar family, GS1 QR Code and GS1 DataMatrix:
+   * 
+   * (01)00031234000054
+   * 
+   * The input is immediately parsed and validated against certain rules for GS1 AIs, after
+   * which the resulting encoding for valid inputs is available via {@link GS1encoder#dataStr}.
+   * If the input is invalid then an exception will be thrown.
+   * 
+   * Any "(" characters in AI element values must be escaped as "\\(" to avoid
+   * conflating them with the start of the next AI.
+   * 
+   * For symbologies that support a composite component (all except Data Matrix, QR Code,
+   * and DotCode), the data for the linear and 2D components can be separated by a
+   * "|" character, for example:
+   * 
+   * (01)12345678901231|(10)ABC123(11)210630
+   *
    * Set the barcode data input buffer using GS1 Application Identifier syntax.
    * @param {string} value
    */
@@ -413,9 +476,38 @@ export class GS1Engine {
   }
 
   /**
-   * @param {string} value
-   * @throws {@link GS1encoderScanDataException} when setting, if the scan data is invalid
-   */
+ * Process scan data received from a barcode reader or return the expected scan data string.
+ * 
+ * Setting: Process normalised scan data received from a barcode reader with
+ * reporting of AIM symbology identifiers enabled to extract the message data and perform
+ * syntax checks in the case of GS1 Digital Link and AI data input.
+ * 
+ * This function will process scan data (such as the output of a barcode reader) and process
+ * the received data, setting the data input buffer to the message received and setting the
+ * selected symbology to something that is able to carry the received data.
+ * 
+ * Note: In some instances the symbology determined by this library will not match
+ * that of the image that was scanned. The AIM symbology identifier prefix of the
+ * scan data does not always uniquely identify the symbology that was scanned.
+ * For example GS1-128 Composite symbols share the same symbology identifier as
+ * the GS1 DataBar family, and will therefore be detected as such.
+ * 
+ * A literal "|" character may be included in the scan data to indicate the
+ * separation between the first and second messages that would be transmitted
+ * by a reader that is configured to return the composite component when
+ * reading EAN/UPC symbols.
+ * 
+ * Example scan data input: ]C1011231231231233310ABC123{GS}99TESTING
+ * where {GS} represents ASCII character 29.
+ * 
+ * Getting: Returns the string that should be returned by scanners when reading a
+ * symbol that is an instance of the selected symbology and contains the same input data.
+ * 
+ * The output will be prefixed with the appropriate AIM symbology identifier.
+ *
+ * @param {string} value
+ * @throws {@link GS1encoderScanDataException} when setting, if the scan data is invalid
+ */
   setScanData(value: string): void {
     this.ensureInitialized();
     this.nativeInstance.setScanData(value);
