@@ -55,6 +55,10 @@ async function initGS1Encoder(): Promise<GS1Engine> {
 3. Initialize GS1Engine class in useEffect hook with cleanup function
 
 ```tsx
+const [encoder, setEncoder] = useState<GS1Engine | null>(null);
+const [loading, setLoading] = useState<boolean>(true);
+const [error, setError] = useState<string>('');
+
 // 2. Instance Lifecycle Management
 useEffect(() => {
   let activeEncoder: GS1Engine | null = null;
