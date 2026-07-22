@@ -51,7 +51,7 @@ export default function App() {
     };
   }, []);
 
-  // 3. Obsluha tlačidla skenovania
+  // 3. Test scan button
   const handleScanSimulation = () => {
     if (!encoder) {
       setError('GS1 Syntax Engine is not ready.');
@@ -123,6 +123,21 @@ export default function App() {
     const result13 = encoder.processBarcode('18580000000006');
     console.log('Processing result for No Aim Code itf14:');
     console.log(result13);
+
+    // Aim Code ean13
+    const result11a = encoder.processBarcode(']E08580000000009');
+    console.log('Processing result for ean13 with AIM Code:');
+    console.log(result11a);
+
+    // Aim Code ean8
+    const result12a = encoder.processBarcode(']E485800007');
+    console.log('Processing result for ean8 with AIM Code:');
+    console.log(result12a);
+
+    // Aim Code itf14
+    const result13a = encoder.processBarcode(']I018580000000006');
+    console.log('Processing result for itf14 with AIM Code:');
+    console.log(result13a); 
 
     // No Aim Code iccbba
     const result14 = encoder.processBarcode(']C0=)1BA0012345');
