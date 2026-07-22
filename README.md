@@ -2,6 +2,8 @@
 
 This library is an implementation of [GS1 Barcode Syntax Engine](https://github.com/gs1/gs1-syntax-engine) as an Expo native module created using [`create-expo-module`](https://docs.expo.dev/modules/native-module-tutorial/) to be used in [Expo](https://docs.expo.dev/) mobile apps and in [React Native](https://reactnative.dev/) mobile apps with installed Expo.
 
+This project is an Expo/React Native wrapper around the [GS1 Barcode Syntax Engine](https://github.com/gs1/gs1-syntax-engine). It is an independent project and is not an official GS1 AISBL package.
+
 Currently used GS1 Barcode Syntax Engine version: 1.4.1
 
 ## About
@@ -114,6 +116,16 @@ console.log('Get formated engine result data');
 const complexData = encoder.getEngineResultData();
 console.log(complexData);
 ```
+
+## Third-party software
+
+This library includes portions of the GS1 Barcode Syntax Engine.
+
+GS1 Barcode Syntax Engine
+Copyright (c) GS1 AISBL
+
+Licensed under the Apache License, Version 2.0.
+https://www.apache.org/licenses/LICENSE-2.0
 
 ## License
 
