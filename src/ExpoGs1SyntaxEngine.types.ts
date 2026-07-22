@@ -14,6 +14,7 @@ export type stringKeyValPair = {
 export type ProcessBarcodeResult = {
   success: boolean;
   error?: string | null;
+  errorReason?: string | null;
   errorMarkup?: string | null;
   dataStr?: string | null;
   aiDataStr?: string | null;
@@ -24,6 +25,7 @@ export type ProcessBarcodeResult = {
   symbology?: Symbology | null | undefined;
   symbologyName?: string | null | undefined;
   scanData?: string | null | undefined;
+  aimPrefix?: string | null | undefined;
 };
 
 /**
