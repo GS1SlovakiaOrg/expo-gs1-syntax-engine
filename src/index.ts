@@ -609,10 +609,18 @@ export class GS1Engine {
     try {
       this.ensureInitialized();
       let isScannedData = false;
+      let aimPrefix = null;
+
+      // GS1 Syntax Engine is unable to process EANs, UPCs and ITFs with AIM prefix
+      if (scannedData.startsWith(']E') || scannedData.startsWith(']I')) {
+        aimPrefix = scannedData.slice(0, 3);
+        scannedData = scannedData.slice(3);
+      }
 
       if (scannedData.startsWith('(')) {
         this.nativeInstance.setAIdataStr(scannedData);
       } else if (scannedData.startsWith(']')) {
+        aimPrefix = scannedData.slice(0, 3);
         isScannedData = true;
         this.nativeInstance.setScanData(scannedData.replace(/{GS}/g, '\u001d'));
       } else if (scannedData.startsWith('^')) {
@@ -637,6 +645,7 @@ export class GS1Engine {
             return {
               success: false,
               error: 'Incorrect numeric check digit',
+              errorReason: this.getErrorReason('')
             };
           }
           this.nativeInstance.setDataStr('^01' + scannedData.padStart(14, '0'));
@@ -651,13 +660,32 @@ export class GS1Engine {
         this.nativeInstance.setDataStr('^' + scannedData);
       }
 
-      return this.getEngineResultData(dlStem, isScannedData);
+      return this.getEngineResultData(dlStem, isScannedData, aimPrefix);
     } catch (e: any) {
       return {
         success: false,
         error: `GS1 Syntax Engine Error: ${e?.message ?? 'Unknown error'}`,
+        errorReason: this.getErrorReason(e)
       };
     }
+  }
+
+  /**
+   * Get error reason from GS1 Syntax Engine verbose error message
+   * 
+   * Extracts the easy to understand error message
+   * 
+   * @param err GS1 Syntax Engine error
+   * @returns {string} Error message
+   */
+  getErrorReason(err: any): string {
+    if (err?.message) {
+      const errMsg = `${err.message}`;
+      let errMsgPart = errMsg.slice(errMsg.indexOf('Caused by:'));
+      errMsgPart = errMsgPart.slice(errMsgPart.indexOf(':', 10) + 1).trim();
+      return errMsgPart;
+    }
+    return 'Unknown error';
   }
 
   /**
@@ -675,7 +703,7 @@ export class GS1Engine {
    * @param isScannedData is provided string a scanData string?
    * @returns {ProcessBarcodeResult}
    */
-  getEngineResultData(dlStem: string | null = null, isScannedData: boolean = false): ProcessBarcodeResult {
+  getEngineResultData(dlStem: string | null = null, isScannedData: boolean = false, aimPrefix: string | null = null): ProcessBarcodeResult {
     try {
       const stem = dlStem ?? 'https://id.gs1.org';
       const errMarkup = this.nativeInstance.getErrMarkup();
@@ -696,6 +724,7 @@ export class GS1Engine {
       return {
         success: !hasError,
         error: hasError ? errMarkup : null,
+        errorReason: hasError ? this.getErrorReason(errMarkup) : null,
         errorMarkup: errMarkup,
         dataStr: this.nativeInstance.getDataStr(),
         aiDataStr: this.nativeInstance.getAIdataStr(),
@@ -706,11 +735,13 @@ export class GS1Engine {
         symbology: (isScannedData === true) ? this.sym : null,
         symbologyName: (isScannedData === true) ? Symbology[this.sym] : null,
         scanData: (isScannedData === true) ? this.nativeInstance.getScanData() : null,
+        aimPrefix: aimPrefix
       };
     } catch (e: any) {
       return {
         success: false,
         error: `GS1 Syntax Engine Error: ${e?.message ?? 'Unknown error'}`,
+        errorReason: this.getErrorReason(e)
       };
     }
   }
