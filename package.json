@@ -1,6 +1,6 @@
 {
   "name": "expo-gs1-syntax-engine",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "This project is an Expo/React Native wrapper around the GS1 Barcode Syntax Engine. It is an independent project and is not an official GS1 AISBL package.",
   "main": "build/index.js",
   "types": "build/index.d.ts",
