@@ -2,6 +2,7 @@
 
 ## vxxx
 - add aiDataPairs type to exported types
+    - updated syntax and renamed to AIDataPairs
 
 ## v0.1.6
 - breaking changes
