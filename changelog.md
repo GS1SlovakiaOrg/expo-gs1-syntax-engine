@@ -1,10 +1,24 @@
 # Changelog
 
 ## vxxx
+
+## v0.1.6
+- breaking changes
+    - updated method getEngineResultData
+        - updated the value of returned "aiDataPairs" property
+            - from aiDataPairs[`${aiValue}`] = dataValue
+            - to aiDataPairs[`${aiValue}`] = {value: `${dataValue}`, name: `${aiName}`};
+        - changes the return of method processBarcode
+            - check "updated method getEngineResultData"
+    - removed stringKeyValPair type
+        - no longer needed
 - Create NOTICE
     - NOTICE that project contains portions of the GS1 Barcode Syntax Engine developed by GS1 AISBL.
 - Update Readme
     - Third-party software notice
+- update package
+    - remove jest
+    - update dependencies
 
 ## v0.1.5
 - update Readme

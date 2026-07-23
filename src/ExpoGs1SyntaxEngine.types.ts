@@ -1,10 +1,14 @@
 export type BarcodeInputType = 'scanData' | 'dataStr';
 
+
 /**
- * General "string":string type
+ * Data structure for decoded GS1 Application Identifier data
  */
-export type stringKeyValPair = {
-  [key: string]: string;
+export type aiDataPairs = {
+  [key: string]: {
+    value: string;
+    name: string;
+  };
 };
 
 /**
@@ -20,7 +24,7 @@ export type ProcessBarcodeResult = {
   aiDataStr?: string | null;
   hri?: string[] | null;
   dlUri?: string | null;
-  aiDataPairs?: stringKeyValPair;
+  aiDataPairs?: aiDataPairs;
   aiOrder?: string[];
   symbology?: Symbology | null | undefined;
   symbologyName?: string | null | undefined;

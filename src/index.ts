@@ -6,12 +6,11 @@ import {
   Validation,
   BarcodeInputType,
   ProcessBarcodeResult,
-  stringKeyValPair,
+  aiDataPairs,
 } from './ExpoGs1SyntaxEngine.types';
 import { GS1EncoderNativeInstance } from './ExpoGs1SyntaxEngineModule';
 
 export { Symbology, Validation, InitOptions, BarcodeInputType, ProcessBarcodeResult };
-
 
 /**
  * Main class for processing GS1 barcode data, including validation, format conversion, and generation of outputs such as GS1 Digital Link URIs and Human-Readable Interpretation text.
@@ -708,7 +707,7 @@ export class GS1Engine {
       const stem = dlStem ?? 'https://id.gs1.org';
       const errMarkup = this.nativeInstance.getErrMarkup();
       const hasError = errMarkup !== null && errMarkup !== '';
-      const customDataFormats = { hri: [''], aiDataPairs: {} as stringKeyValPair, aiOrder: [''] };
+      const customDataFormats = { hri: [''], aiDataPairs: {} as aiDataPairs, aiOrder: [''] };
       customDataFormats.hri = this.nativeInstance.getHRI();
 
       for (let index = 0; index < customDataFormats.hri.length; index++) {
@@ -716,11 +715,12 @@ export class GS1Engine {
         const indexOpenPar = item.indexOf('(');
         const indexClosePar = item.indexOf(')');
         const aiValue = item.slice(indexOpenPar + 1, indexClosePar);
+        const aiName = item.slice(0, indexOpenPar);
         const dataValue = item.slice(indexClosePar + 1).trim();
-        customDataFormats.aiDataPairs[`${aiValue}`] = dataValue;
+        customDataFormats.aiDataPairs[`${aiValue}`] = {value: `${dataValue}`, name: `${aiName}`};
         customDataFormats.aiOrder[index] = `${aiValue}`;
       }
-
+  
       return {
         success: !hasError,
         error: hasError ? errMarkup : null,
