@@ -10,7 +10,7 @@ import {
 } from './ExpoGs1SyntaxEngine.types';
 import { GS1EncoderNativeInstance } from './ExpoGs1SyntaxEngineModule';
 
-export { Symbology, Validation, InitOptions, BarcodeInputType, ProcessBarcodeResult };
+export { Symbology, Validation, InitOptions, BarcodeInputType, ProcessBarcodeResult, aiDataPairs };
 
 /**
  * Main class for processing GS1 barcode data, including validation, format conversion, and generation of outputs such as GS1 Digital Link URIs and Human-Readable Interpretation text.

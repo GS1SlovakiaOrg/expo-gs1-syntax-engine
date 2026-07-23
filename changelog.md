@@ -1,6 +1,7 @@
 # Changelog
 
 ## vxxx
+- add aiDataPairs type to exported types
 
 ## v0.1.6
 - breaking changes
