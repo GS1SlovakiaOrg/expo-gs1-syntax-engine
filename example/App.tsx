@@ -59,109 +59,139 @@ export default function App() {
     }
     console.log('---------------------------');
 
-    // databar
-    const result1 = encoder.processBarcode(']e0011231231231233310ABC123\u001D99XYZ', 'https://mydomain.sk');
-    console.log('Processing result for databar:');
-    console.log(result1);
+    // // databar
+    // const result1 = encoder.processBarcode(']e0010858000000000910ABC123\u001D99XYZ', 'https://mydomain.sk');
+    // console.log('Processing result for databar:');
+    // console.log(result1);
 
-    // datamatrix
-    const result2 = encoder.processBarcode(']d0011231231231233310ABC123\u001D99XYZ', 'https://mydomain.sk');
-    console.log('Processing result for datamatrix:');
-    console.log(result2);
+    // // datamatrix
+    // const result2 = encoder.processBarcode(']d0010858000000000910ABC123\u001D99XYZ', 'https://mydomain.sk');
+    // console.log('Processing result for datamatrix:');
+    // console.log(result2);
 
-    // gs1 datamatrix
-    const result3 = encoder.processBarcode(']d2011231231231233310ABC123\u001D99XYZ', 'https://mydomain.sk');
-    console.log('Processing result for gs1 datamatrix:');
-    console.log(result3);
+    // // gs1 datamatrix
+    // const result3 = encoder.processBarcode(']d2010858000000000910ABC123\u001D99XYZ', 'https://mydomain.sk');
+    // console.log('Processing result for gs1 datamatrix:');
+    // console.log(result3);
 
-    // gs1 128
-    const result4 = encoder.processBarcode(']C1010003123400005410ABC123');
-    console.log('Processing result for gs1 128:');
-    console.log(result4);
+    // // gs1 128
+    // const result4 = encoder.processBarcode(']C1010003123400005410ABC123');
+    // console.log('Processing result for gs1 128:');
+    // console.log(result4);
 
-    // code 128
-    const result5 = encoder.processBarcode(']C0010003123400005410ABC123');
-    console.log('Processing result for code 128:');
-    console.log(result5);
+    // // code 128
+    // const result5 = encoder.processBarcode(']C0010003123400005410ABC123');
+    // console.log('Processing result for code 128:');
+    // console.log(result5);
 
-    // QR DL
-    const result6 = encoder.processBarcode('https://id.gs1sk.org/01/08580000000030?11=260705&17=240710');
-    console.log('Processing result for QR DL 1:');
-    console.log(result6);
+    // // QR DL
+    // const result6 = encoder.processBarcode('https://id.gs1sk.org/01/08580000000030?11=260705&17=240710');
+    // console.log('Processing result for QR DL 1:');
+    // console.log(result6);
 
-    // QR DL
-    const result7 = encoder.processBarcode('https://example.com/01/09521234543213?99=TESTING123');
-    console.log('Processing result for QR DL 2:');
-    console.log(result7);
+    // // QR DL
+    // const result7 = encoder.processBarcode('https://example.com/01/09521234543213?99=TESTING123');
+    // console.log('Processing result for QR DL 2:');
+    // console.log(result7);
 
-    // QR DL
-    const result8 = encoder.processBarcode('https://id.gs1sk.org/01/08580000000030/10/cheese858?11=250630&15=291124&linkType=nutritionalInfo');
-    console.log('Processing result for QR DL 3:');
-    console.log(result8);
+    // // QR DL
+    // const result8 = encoder.processBarcode('https://id.gs1sk.org/01/08580000000030/10/cheese858?11=250630&15=291124&linkType=nutritionalInfo');
+    // console.log('Processing result for QR DL 3:');
+    // console.log(result8);
 
-    // No Aim Code alphanumeric
-    const result9 = encoder.processBarcode('010003123400005410ABC123');
-    console.log('Processing result for No Aim Code alphanumeric:');
-    console.log(result9);
+    // // No Aim Code alphanumeric
+    // const result9 = encoder.processBarcode('010003123400005410ABC123');
+    // console.log('Processing result for No Aim Code alphanumeric:');
+    // console.log(result9);
 
-    // No Aim Code numeric
-    const result10 = encoder.processBarcode('8580000000009454787864');
-    console.log('Processing result for No Aim Code numeric:');
-    console.log(result10);
+    // // No Aim Code numeric
+    // const result10 = encoder.processBarcode('8580000000009454787864');
+    // console.log('Processing result for No Aim Code numeric:');
+    // console.log(result10);
 
-    // No Aim Code ean13
-    const result11 = encoder.processBarcode('8580000000009');
-    console.log('Processing result for No Aim Code ean13:');
-    console.log(result11);
+    // // No Aim Code ean13
+    // const result11 = encoder.processBarcode('8580000000009');
+    // console.log('Processing result for No Aim Code ean13:');
+    // console.log(result11);
 
-    // No Aim Code ean8
-    const result12 = encoder.processBarcode('85800007');
-    console.log('Processing result for No Aim Code ean8:');
-    console.log(result12);
+    // // No Aim Code ean8
+    // const result12 = encoder.processBarcode('85800007');
+    // console.log('Processing result for No Aim Code ean8:');
+    // console.log(result12);
 
-    // No Aim Code itf14
-    const result13 = encoder.processBarcode('18580000000006');
-    console.log('Processing result for No Aim Code itf14:');
-    console.log(result13);
+    // // No Aim Code itf14
+    // const result13 = encoder.processBarcode('18580000000006');
+    // console.log('Processing result for No Aim Code itf14:');
+    // console.log(result13);
 
-    // Aim Code ean13
-    const result11a = encoder.processBarcode(']E08580000000009');
-    console.log('Processing result for ean13 with AIM Code:');
-    console.log(result11a);
+    // // Aim Code ean13
+    // const result11a = encoder.processBarcode(']E08580000000009');
+    // console.log('Processing result for ean13 with AIM Code:');
+    // console.log(result11a);
 
-    // Aim Code ean8
-    const result12a = encoder.processBarcode(']E485800007');
-    console.log('Processing result for ean8 with AIM Code:');
-    console.log(result12a);
+    // // Aim Code ean8
+    // const result12a = encoder.processBarcode(']E485800007');
+    // console.log('Processing result for ean8 with AIM Code:');
+    // console.log(result12a);
 
-    // Aim Code itf14
-    const result13a = encoder.processBarcode(']I018580000000006');
-    console.log('Processing result for itf14 with AIM Code:');
-    console.log(result13a); 
+    // // Aim Code itf14
+    // const result13a = encoder.processBarcode(']I018580000000006');
+    // console.log('Processing result for itf14 with AIM Code:');
+    // console.log(result13a); 
 
-    // No Aim Code iccbba
-    const result14 = encoder.processBarcode(']C0=)1BA0012345');
-    console.log('Processing result for No Aim Code iccbba:');
-    console.log(result14);
+    // // No Aim Code iccbba
+    // const result14 = encoder.processBarcode(']C0=)1BA0012345');
+    // console.log('Processing result for No Aim Code iccbba:');
+    // console.log(result14);
 
-    // No Aim Code iccbba
-    const result15 = encoder.processBarcode(']C0&)000000X245');
-    console.log('Processing result for No Aim Code isbt:');
-    console.log(result15);
+    // // No Aim Code iccbba
+    // const result15 = encoder.processBarcode(']C0&)000000X245');
+    // console.log('Processing result for No Aim Code isbt:');
+    // console.log(result15);
 
-    // direct method usage
-    console.log('---------------------------');
-    console.log('Direct method usage');
-    encoder.setScanData(']d201085800000000091126071610Lot858\u001D21Serial01');
-    console.log('Get HRI from direct input');
-    console.log('---------------------------');
-    const resultDirect = encoder.getHRI();
-    console.log(`${resultDirect}`);
-    const complexData = encoder.getEngineResultData();
-    console.log(complexData);
+    // // 
+    // const result16 = encoder.processBarcode(']d2010858000000000910ABC123');
+    // console.log('Processing result:');
+    // console.log(result16);
+
+    // // NET WEIGHT (kg)
+    // const result17 = encoder.processBarcode(']d20108580000000009310100012310ABC123');
+    // console.log('Processing result NET WEIGHT (kg):');
+    // console.log(result17);
+
+    // // LENGTH (m)
+    // const result18 = encoder.processBarcode(']d20108580000000009311100014710ABC123');
+    // console.log('Processing result LENGTH (m):');
+    // console.log(result18);
+
+    // // LENGTH (in), log
+    // const result19 = encoder.processBarcode(']d20108580000000009341000025610ABC123');
+    // console.log('Processing result LENGTH (in), log:');
+    // console.log(result19);
+
+    // // VOLUME (gal (US)), log
+    // const result20 = encoder.processBarcode(']d20108580000000009363500005110ABC123');
+    // console.log('Processing result VOLUME (gal (US)), log:');
+    // console.log(result20);
+
+    // // NET VOLUME (qt (US))
+    // const result21 = encoder.processBarcode(']d20108580000000009360000001110ABC123');
+    // console.log('Processing result NET VOLUME (qt (US)):');
+    // console.log(result21);
+
+    // // direct method usage
+    // console.log('---------------------------');
+    // console.log('Direct method usage');
+    // encoder.setScanData(']d201085800000000091126071610Lot858\u001D21Serial01');
+    // console.log('Get HRI from direct input');
+    // console.log('---------------------------');
+    // const resultDirect = encoder.getHRI();
+    // console.log(`${resultDirect}`);
+    // const complexData = encoder.getEngineResultData();
+    // console.log(complexData);
 
     // Data displayed in View
-    const result = encoder.processBarcode(']d2011231231231233310ABC123\u001D99XYZ');
+    const result = encoder.processBarcode(']d2010858000000000910ABC123\u001D99XYZ');
     setScanResult(result);
   };
 
