@@ -14,6 +14,20 @@ type AIDataItem = {
 export type AIDataPairs = Record<string, AIDataItem>;
 
 /**
+ * Data structure returned by parseHRIString
+ * 
+ * {gs1AI: "gs1Ai", value: "gs1AiValue", name: "gs1AIHRIName"}
+ * 
+ * example:
+ * {gs1AI: "01" ,value: "08580000000009", name: "GTIN"}
+ */
+export interface ParsedGS1AIData {
+    gs1Ai: string;
+    value: string;
+    name: string;
+}
+
+/**
  * Data structure returned by processBarcode method 
  * (general method to process barcode data strings in multiple formats)
  */
