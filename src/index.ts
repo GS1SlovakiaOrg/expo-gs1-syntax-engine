@@ -7,10 +7,11 @@ import {
   BarcodeInputType,
   ProcessBarcodeResult,
   AIDataPairs,
+  ParsedGS1AIData,
 } from './ExpoGs1SyntaxEngine.types';
 import { GS1EncoderNativeInstance } from './ExpoGs1SyntaxEngineModule';
 
-export { Symbology, Validation, InitOptions, BarcodeInputType, ProcessBarcodeResult, AIDataPairs };
+export { Symbology, Validation, InitOptions, BarcodeInputType, ProcessBarcodeResult, AIDataPairs, ParsedGS1AIData };
 
 /**
  * Main class for processing GS1 barcode data, including validation, format conversion, and generation of outputs such as GS1 Digital Link URIs and Human-Readable Interpretation text.
@@ -712,15 +713,13 @@ export class GS1Engine {
 
       for (let index = 0; index < customDataFormats.hri.length; index++) {
         const item = customDataFormats.hri[index];
-        const indexOpenPar = item.indexOf('(');
-        const indexClosePar = item.indexOf(')');
-        const aiValue = item.slice(indexOpenPar + 1, indexClosePar);
-        const aiName = item.slice(0, indexOpenPar);
-        const dataValue = item.slice(indexClosePar + 1).trim();
-        customDataFormats.aiDataPairs[`${aiValue}`] = {value: `${dataValue}`, name: `${aiName}`};
-        customDataFormats.aiOrder[index] = `${aiValue}`;
+        const parsedHriString = this.parseHRIString(item);
+        if (parsedHriString === null) continue;
+        const gs1Ai = `${parsedHriString.gs1Ai}`
+        customDataFormats.aiDataPairs[gs1Ai] = {name: parsedHriString.name, value: parsedHriString.value };
+        customDataFormats.aiOrder[index] = gs1Ai;
       }
-  
+
       return {
         success: !hasError,
         error: hasError ? errMarkup : null,
@@ -744,6 +743,32 @@ export class GS1Engine {
         errorReason: this.getErrorReason(e)
       };
     }
+  }
+
+  /**
+   * Parses GS1 Syntax Engine HRI to object
+   * 
+   * Parsed object contains {gs1Ai, value, name}
+   * 
+   * example: {gs1AI: "01" ,value: "08580000000009", name: "GTIN"}
+   * 
+   * @param input GS1 Syntax Engine HRI string
+   * @returns parsed HRI 
+   */
+  parseHRIString(input: string): ParsedGS1AIData | null {
+    // Search for the last set of parentheses containing numbers and the text that follows it
+    const regex = /^(.*?)\s*\((\d+)\)\s*(\S+)$/;
+    const match = input.match(regex);
+
+    if (!match) return null;
+
+    const [_, name, gs1Ai, value] = match;
+
+    return {
+      gs1Ai: gs1Ai,
+      value: value,
+      name: name.trim()
+    };
   }
 
   /**

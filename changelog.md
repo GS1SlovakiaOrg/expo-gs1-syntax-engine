@@ -3,6 +3,13 @@
 ## vxxx
 - add aiDataPairs type to exported types
     - updated syntax and renamed to AIDataPairs
+- new type ParsedGS1AIData
+    - for parseHRIString method
+    - type definition for parsed data from GS1 Syntax Engine HRI string
+- new method ParsedGS1AIData
+    - Parses GS1 Syntax Engine HRI to object
+- update method getEngineResultData
+    - bugfixed incorrect parsing of some GS1 Syntax Engine HRI strings
 
 ## v0.1.6
 - breaking changes
