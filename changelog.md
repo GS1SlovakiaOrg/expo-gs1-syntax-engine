@@ -1,6 +1,8 @@
 # Changelog
 
 ## vxxx
+
+## v0.1.7
 - add aiDataPairs type to exported types
     - updated syntax and renamed to AIDataPairs
 - new type ParsedGS1AIData
