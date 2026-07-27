@@ -14,9 +14,6 @@ The library uses .java wrapper from [GS1 Barcode Syntax Engine](https://github.c
 
 All [GS1 Barcode Syntax Engine](https://github.com/gs1/gs1-syntax-engine) are exposed and ready to use and there are a few additional methods.
 
-[![npm version](http://img.shields.io/npm/v/react-native-datawedge-intents.svg?style=flat-square)](https://www.npmjs.com/package/expo-gs1-syntax-engine "View this project on npm")
-[![npm licence](http://img.shields.io/npm/l/react-native-datawedge-intents.svg?style=flat-square)](https://www.npmjs.com/package/expo-gs1-syntax-engine "View this project on npm")
-
 ## Installation
 
 ### Expo
