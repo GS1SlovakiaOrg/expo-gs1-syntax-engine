@@ -6,11 +6,16 @@ This project is an Expo/React Native wrapper around the [GS1 Barcode Syntax Engi
 
 Currently used GS1 Barcode Syntax Engine version: 1.4.1
 
+This application is provided as-is without any gurantee of support.
+
 ## About
 
 The library uses .java wrapper from [GS1 Barcode Syntax Engine](https://github.com/gs1/gs1-syntax-engine) that references native C code from [GS1 Barcode Syntax Engine](https://github.com/gs1/gs1-syntax-engine). This library is just a .kt and .ts wrapper around the .java [GS1 Barcode Syntax Engine](https://github.com/gs1/gs1-syntax-engine) wrapper that exposes methods from GS1Encoder.java.
 
 All [GS1 Barcode Syntax Engine](https://github.com/gs1/gs1-syntax-engine) are exposed and ready to use and there are a few additional methods.
+
+[![npm version](http://img.shields.io/npm/v/react-native-datawedge-intents.svg?style=flat-square)](https://www.npmjs.com/package/expo-gs1-syntax-engine "View this project on npm")
+[![npm licence](http://img.shields.io/npm/l/react-native-datawedge-intents.svg?style=flat-square)](https://www.npmjs.com/package/expo-gs1-syntax-engine "View this project on npm")
 
 ## Installation
 
