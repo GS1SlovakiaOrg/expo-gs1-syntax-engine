@@ -1,4 +1,4 @@
-# Expo GS1 Syntax Engine
+# Expo GS1 Barcode Syntax Engine
 
 This library is an implementation of [GS1 Barcode Syntax Engine](https://github.com/gs1/gs1-syntax-engine) as an Expo native module created using [`create-expo-module`](https://docs.expo.dev/modules/native-module-tutorial/) to be used in [Expo](https://docs.expo.dev/) mobile apps and in [React Native](https://reactnative.dev/) mobile apps with installed Expo.
 
