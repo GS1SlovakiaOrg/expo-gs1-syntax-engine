@@ -119,6 +119,10 @@ const complexData = encoder.getEngineResultData();
 console.log(complexData);
 ```
 
+## Example app
+
+We have created a basic [Expo GS1 Barcode Syntax Engine Example App](https://github.com/GS1SlovakiaOrg/expo-gs1-s-e-example) to demonstrate how this library can be used.
+
 ## Third-party software
 
 This library includes portions of the GS1 Barcode Syntax Engine.
