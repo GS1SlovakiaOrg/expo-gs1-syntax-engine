@@ -207,7 +207,7 @@ export default function App() {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>Expo GS1 Syntax Engine Demo</Text>
+      <Text style={styles.title}>Expo GS1 Barcode Syntax Engine Demo</Text>
 
       <Text style={styles.statusText}>
         Instance status: {encoder?.isInitialized ? 'Active in memory' : 'Inactive'}
