@@ -14,6 +14,10 @@ The library uses .java wrapper from [GS1 Barcode Syntax Engine](https://github.c
 
 All [GS1 Barcode Syntax Engine](https://github.com/gs1/gs1-syntax-engine) are exposed and ready to use and there are a few additional methods.
 
+## Documentation
+
+Full documentation (in Slovak) is available in the [`docs/`](./docs/) folder – start with [`docs/README.md`](./docs/README.md) for the table of contents (installation, architecture, API reference, examples, troubleshooting, native layer, development). A condensed specification / current context is in [`SPECS.md`](./SPECS.md).
+
 ## Installation
 
 ### Expo
